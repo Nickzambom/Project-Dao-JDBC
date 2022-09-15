@@ -11,8 +11,9 @@ import java.util.Properties;
 
 public class DB {
 
+	private static Connection conn = null;
 
-	public static Connection getConnection(Connection conn) {
+	public static Connection getConnection() {
 		if (conn == null) {
 			try {
 				Properties props = loadProperties();
@@ -22,9 +23,9 @@ public class DB {
 				throw new DbException(e.getMessage());
 			}
 		}
-		System.out.println("Connectado com sucesso");
 		return conn;
 	}
+
 	private static Properties loadProperties() {
 		try (FileInputStream fs = new FileInputStream("db.properties")) {
 			Properties props = new Properties();
@@ -34,7 +35,7 @@ public class DB {
 			throw new DbException(e.getMessage());
 		}
 	}
-	
+
 	public static void closeConnection(Connection conn) {
 		if (conn != null) {
 			try {
@@ -55,11 +56,10 @@ public class DB {
 			}
 		}
 	}
-	
-	public static void closeConnections(Connection conn, Statement st, ResultSet rs) {
-		if (conn != null && st != null && rs !=null) {
+
+	public static void closeConnections(Statement st, ResultSet rs) {
+		if (st != null && rs != null) {
 			try {
-				conn.close();
 				st.close();
 				rs.close();
 			} catch (SQLException e) {
@@ -68,6 +68,4 @@ public class DB {
 		}
 	}
 
-	
-	
 }
