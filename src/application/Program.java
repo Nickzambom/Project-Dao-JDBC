@@ -2,7 +2,6 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,21 +36,35 @@ public class Program {
 			System.out.println(obj);
 		}
 		System.out.println();
-		System.out.println("=== TEST 4: seller findAll ===");
-		System.out.print("Name: ");
-		String name = ler.nextLine();
-		System.out.print("Email");
-		String email = ler.nextLine();
-		System.out.print("BirthDate");
-		Date data = sdf.parse(ler.next());
-		System.out.print("BaseSalary");
-		double salary = ler.nextDouble();
-		System.out.print("Department id");
-		int id = ler.nextInt();
-		Department dep = new Department(id, null);
 
-		Seller seller3 = new Seller(null, name, email, data, salary, dep);
-		sellerDao.insert(seller3);
+		System.out.println("=== TEST 4: seller Delete ===");
+		System.out.println("Id for Delete: ");
+		int id = ler.nextInt();
+		sellerDao.deleteById(id);
+
+		/*
+		 * System.out.println("=== TEST 5: seller Update ===");
+		 * System.out.print("Name: "); String name = ler.nextLine();
+		 * System.out.print("Email: "); String email = ler.nextLine();
+		 * System.out.print("BirthDate: "); Date data = sdf.parse(ler.next());
+		 * System.out.print("BaseSalary: "); double salary = ler.nextDouble();
+		 * System.out.print("Department id: "); int id = ler.nextInt(); Department dep =
+		 * new Department(id, null); System.out.print("Id for update: "); int id2 =
+		 * ler.nextInt(); Seller seller3 = new Seller(id2, name, email, data, salary,
+		 * dep); sellerDao.update(seller3);
+		 * 
+		 * 
+		 * System.out.println("=== TEST 6: seller Insert ===");
+		 * System.out.print("Name: "); String name1 = ler.nextLine();
+		 * System.out.print("Email: "); String email1 = ler.nextLine();
+		 * System.out.print("BirthDate: "); Date data1 = sdf.parse(ler.next());
+		 * System.out.print("BaseSalary: "); double salary1 = ler.nextDouble();
+		 * System.out.print("Department id: "); int id1 = ler.nextInt(); Department dep1
+		 * = new Department(id, null);
+		 * 
+		 * Seller seller4 = new Seller(null, name1, email1, data1, salary1, dep1);
+		 * sellerDao.insert(seller4);
+		 */
 
 	}
 
