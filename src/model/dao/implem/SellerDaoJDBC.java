@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import model.entities.Seller;
 public class SellerDaoJDBC implements SellerDao {
 
 	private Connection conn;
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public SellerDaoJDBC(Connection conn) {
 		this.conn = conn;
@@ -25,7 +27,21 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void insert(Seller obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) "
+					+ "VALUES (?, ?, ?, ?, ?)");
+			st.setString(1, obj.getName());
+			st.setString(2, obj.getEmail());
+			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+			st.setDouble(4, obj.getBaseSalary());
+			st.setInt(5, obj.getDepartment().getId());
+			st.execute();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeConnections(st);
+		}
 
 	}
 
@@ -46,7 +62,7 @@ public class SellerDaoJDBC implements SellerDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareCall(
+			st = conn.prepareStatement(
 					"SELECT seller.*,department.Name as DepName \r\n" + "FROM seller INNER JOIN department \r\n"
 							+ "ON seller.DepartmentId = department.Id \r\n" + "WHERE seller.Id = ?");
 			st.setInt(1, id);

@@ -68,4 +68,14 @@ public class DB {
 		}
 	}
 
+	public static void closeConnections(Statement st) {
+		if (st != null) {
+			try {
+				st.close();
+			} catch (SQLException e) {
+				throw new DbException(e.getMessage());
+			}
+		}
+	}
+
 }
