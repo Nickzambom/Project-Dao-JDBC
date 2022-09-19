@@ -65,7 +65,7 @@ public class Program {
 		 * Seller seller4 = new Seller(null, name1, email1, data1, salary1, dep1);
 		 * sellerDao.insert(seller4);
 		 */
-
+		ler.close();
 	}
 
 }
