@@ -1,17 +1,16 @@
 package application;
 
 import java.util.List;
-import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
-public class Program2 {
+public class Testes {
 
 	public static void main(String[] args) {
 
-		Scanner ler = new Scanner(System.in);
+		// Scanner ler = new Scanner(System.in);
 		DepartmentDao DepartmentDao = DaoFactory.createDepartmentDao();
 
 		/*
@@ -38,15 +37,15 @@ public class Program2 {
 		 * DepartmentDao.deleteById(id);
 		 */
 
-		System.out.println("---- TESTE 5  Update----");
-		System.out.print("Id for update: ");
-		int id = ler.nextInt();
-		ler.nextLine();
+		// System.out.println("---- TESTE 5 Update----");
+		// System.out.print("Id for update: ");
+		// int id = ler.nextInt();
+		// ler.nextLine();
 		System.out.print("Name for update: ");
-		String name = ler.nextLine();
-		Department dep5 = new Department(id, name);
-		DepartmentDao.update(dep5);
-		
+		// String name = ler.nextLine();
+		// Department dep5 = new Department(id, name);
+		// DepartmentDao.update(dep5);
+
 	}
 
 }
